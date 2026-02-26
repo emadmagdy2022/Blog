@@ -6,3 +6,6 @@ django-extensions
 pillow
 sqlparse
 tzdata
+markdown       
+django-filter
+djangorestframework-simplejwt
