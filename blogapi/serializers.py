@@ -1,4 +1,4 @@
-from restframework import serializers
+from rest_framework import serializers
 from .models import Post, Comment, Like, User
 
 class UserSerializer (serializers.ModelSerializer):
