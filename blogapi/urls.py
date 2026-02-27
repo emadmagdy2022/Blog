@@ -1,7 +1,11 @@
 from django.contrib import admin
 from django.urls import path
 from blogapi import views
+from rest_framework import routers
 
 urlpatterns = [
-    path('user/',views.UserViewSet.as_view())
 ]
+router = routers.DefaultRouter()
+router.register('users', views.UserViewSet)
+router.register('posts', views.PostViewSet)
+urlpatterns += router.urls
