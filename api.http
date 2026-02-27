@@ -1,0 +1,13 @@
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "test22",
+	"password": "test22"
+}
+
+###
+
+GET http://localhost:8000/users/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyMjAwNDI4LCJpYXQiOjE3NzIyMDAxMjgsImp0aSI6IjY2YzE1NWMyMWQ1YzRiYjliNDQyZWJjMTZhZTQ4YjcwIiwidXNlcl9pZCI6IjcifQ.statZM2wAbZtFIJgg5W3M0BG4c8aGyEsiUK8zm7noYg
