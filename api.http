@@ -2,32 +2,52 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
+	"username": "t",
+	"password": "t"
+}
+
+###
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
 	"username": "e",
 	"password": "e"
 }
 
 ###
 
-GET http://localhost:8000/users/ HTTP/1.1
+POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ2ODk2LCJpYXQiOjE3NzI1NDY1OTYsImp0aSI6IjExNjdhZGRiZGYxOTQ1ZGRhZmQwYmQ5Y2FlYTdiNGY5IiwidXNlcl9pZCI6IjMifQ.uQJDYrt6LWEEym6aM0ufJiqazNiocYanJ8abPQO_x5U
-###
-GET http://localhost:8000/posts/ HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ3MjEwLCJpYXQiOjE3NzI1NDY5MTAsImp0aSI6ImE2NzY3NTA4NWYzOTRhMjE5ZDg4ZGI1NTAxYTM5ZDg3IiwidXNlcl9pZCI6IjMifQ.iaq4gD_lDGZMV3BW_vbLTr3_wp8gF-DMIHO5P1mp5x4
-###
-
-POST http://localhost:8000/posts/ HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ2ODk2LCJpYXQiOjE3NzI1NDY1OTYsImp0aSI6IjExNjdhZGRiZGYxOTQ1ZGRhZmQwYmQ5Y2FlYTdiNGY5IiwidXNlcl9pZCI6IjMifQ.uQJDYrt6LWEEym6aM0ufJiqazNiocYanJ8abPQO_x5U
 
 {
-	"title": "My Second Post",
-	"content": "This is the content of my second post."
+	"username": "emad",
+	"password": "emad"
 }
 
 ###
 
-DELETE http://localhost:8000/posts/95009755-ee62-45ee-afa9-95e05b834cd7/ HTTP/1.1
+
+GET http://localhost:8000/users/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ3MjEwLCJpYXQiOjE3NzI1NDY5MTAsImp0aSI6ImE2NzY3NTA4NWYzOTRhMjE5ZDg4ZGI1NTAxYTM5ZDg3IiwidXNlcl9pZCI6IjMifQ.iaq4gD_lDGZMV3BW_vbLTr3_wp8gF-DMIHO5P1mp5x4
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ3MzA1LCJpYXQiOjE3NzI1NDcwMDUsImp0aSI6IjBmOGYyMDNiN2JjNDQ3MWM4Zjk2N2NjNjMyMGZlYzg2IiwidXNlcl9pZCI6IjIifQ.boDoDHyxZ7soe8JOZBcpWHblVNtCECuse0ZjP3GvVVc
+###
+GET http://localhost:8000/posts/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ4MTIyLCJpYXQiOjE3NzI1NDc4MjIsImp0aSI6IjU0NTBmNjAyYWY2NDRiMDBhOTc1MTgyM2U5M2U1YWExIiwidXNlcl9pZCI6IjMifQ.M_2UtwVZ4yfRR9ik-EMfjTDrmfNWhUS3qRq7Abi5lIk
+###
+
+POST http://localhost:8000/posts/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ4MTIyLCJpYXQiOjE3NzI1NDc4MjIsImp0aSI6IjU0NTBmNjAyYWY2NDRiMDBhOTc1MTgyM2U5M2U1YWExIiwidXNlcl9pZCI6IjMifQ.M_2UtwVZ4yfRR9ik-EMfjTDrmfNWhUS3qRq7Abi5lIk
+
+{
+	"title": "user",
+	"content": "user"
+}
+
+###
+
+DELETE http://localhost:8000/posts/0a9cc817-a3f6-4e39-9261-9439438dcbcd/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ4MjcyLCJpYXQiOjE3NzI1NDc5NzIsImp0aSI6IjNkNGU3ZDBjMDZlNjQ3ZDc5ZTZjOGJlZGFmNjM5Y2YxIiwidXNlcl9pZCI6IjMifQ.OhDyfilh5AWEPg97GYVS0r2OyQ2Rh2Vb_nfkGdLNZNo
