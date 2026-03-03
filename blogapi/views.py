@@ -39,7 +39,7 @@ class PostViewSet(viewsets.ModelViewSet):
      ordering_fields = ['created_at', 'updated_at']
      def perform_create(self, serializer):
           serializer.save(author=self.request.user)
-              
+           
      #@action(detail=True,methods=['post'],permission_classes=[permissions.IsAuthenticated])
 
 
