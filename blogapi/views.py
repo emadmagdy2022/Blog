@@ -104,6 +104,15 @@ class PostViewSet(viewsets.ModelViewSet):
                     else:
                          return Response({'detail': 'You do not have permission to delete this comment.'}, status=403)
           
-          
+     @action(detail=True, methods=['get','post'], url_path='likes', serializer_class=LikeSerializer)
+     def likes(self,request,pk=None):
+          post = self.get_object()
+          like,created = Like.objects.get_or_create(user=request.user, post=post)
+          serializer = LikeSerializer(like)
+          if not created:
+               like.delete()
+               return Response({'detail': 'Post unliked.'}, status=200)
+          else:
+               return Response({'detail': 'Post liked.'}, status=201)
 
 
