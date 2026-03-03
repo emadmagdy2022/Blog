@@ -5,6 +5,7 @@ class UserSerializer (serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'image']
+        kwargs = {'id': {'read_only': True}}
 
 class LikeSerializer (serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -27,6 +28,7 @@ class PostSerializer (serializers.ModelSerializer):
     total_comments = serializers.SerializerMethodField()
     author= serializers.StringRelatedField(read_only=True)
     id = serializers.IntegerField(read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
     class Meta:
         model = Post
         fields = ['id', 'title', 'content', 'author', 'created_at', 'updated_at', 'comments', 'total_likes', 'total_comments']
@@ -34,3 +36,5 @@ class PostSerializer (serializers.ModelSerializer):
         return obj.likes.count()
     def get_total_comments(self, obj):
         return obj.comments.count()
+    def create(self, validated_data):
+        pass
