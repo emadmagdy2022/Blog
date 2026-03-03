@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Post, Comment, Like, User
+import uuid
 
+from blogapi import models
 class UserSerializer (serializers.ModelSerializer):
     class Meta:
         model = User
@@ -25,9 +27,9 @@ class PostSerializer (serializers.ModelSerializer):
     # author = UserSerializer(read_only=True)
     # comments = CommentSerializer(many=True, read_only=True)
     total_likes = serializers.SerializerMethodField()
+    id = serializers.UUIDField(read_only=True)
     total_comments = serializers.SerializerMethodField()
     author= serializers.StringRelatedField(read_only=True)
-    id = serializers.IntegerField(read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
     class Meta:
         model = Post
