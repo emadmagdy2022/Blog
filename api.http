@@ -2,25 +2,32 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-	"username": "emad",
-	"password": "emad"
+	"username": "e",
+	"password": "e"
 }
 
 ###
 
 GET http://localhost:8000/users/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ1OTQyLCJpYXQiOjE3NzI1NDU2NDIsImp0aSI6IjI2OTYxOGQxNDFhMzQxYjdiMjAzYWNjM2Y4ZjA0YTExIiwidXNlcl9pZCI6IjEifQ.K7K106eSobxt1Ss3J_2QlSw-G_hwShQDzBaeVrMmofU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ2ODk2LCJpYXQiOjE3NzI1NDY1OTYsImp0aSI6IjExNjdhZGRiZGYxOTQ1ZGRhZmQwYmQ5Y2FlYTdiNGY5IiwidXNlcl9pZCI6IjMifQ.uQJDYrt6LWEEym6aM0ufJiqazNiocYanJ8abPQO_x5U
 ###
-GET http://localhost:8000/posts/51424610490175574969660891839749723734/ HTTP/1.1
+GET http://localhost:8000/posts/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ1OTQyLCJpYXQiOjE3NzI1NDU2NDIsImp0aSI6IjI2OTYxOGQxNDFhMzQxYjdiMjAzYWNjM2Y4ZjA0YTExIiwidXNlcl9pZCI6IjEifQ.K7K106eSobxt1Ss3J_2QlSw-G_hwShQDzBaeVrMmofU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ3MjEwLCJpYXQiOjE3NzI1NDY5MTAsImp0aSI6ImE2NzY3NTA4NWYzOTRhMjE5ZDg4ZGI1NTAxYTM5ZDg3IiwidXNlcl9pZCI6IjMifQ.iaq4gD_lDGZMV3BW_vbLTr3_wp8gF-DMIHO5P1mp5x4
 ###
 
 POST http://localhost:8000/posts/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ1OTQyLCJpYXQiOjE3NzI1NDU2NDIsImp0aSI6IjI2OTYxOGQxNDFhMzQxYjdiMjAzYWNjM2Y4ZjA0YTExIiwidXNlcl9pZCI6IjEifQ.K7K106eSobxt1Ss3J_2QlSw-G_hwShQDzBaeVrMmofU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ2ODk2LCJpYXQiOjE3NzI1NDY1OTYsImp0aSI6IjExNjdhZGRiZGYxOTQ1ZGRhZmQwYmQ5Y2FlYTdiNGY5IiwidXNlcl9pZCI6IjMifQ.uQJDYrt6LWEEym6aM0ufJiqazNiocYanJ8abPQO_x5U
+
 {
-	"title": "My First Post",
-	"content": "This is the content of my first post."
+	"title": "My Second Post",
+	"content": "This is the content of my second post."
 }
+
+###
+
+DELETE http://localhost:8000/posts/95009755-ee62-45ee-afa9-95e05b834cd7/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcyNTQ3MjEwLCJpYXQiOjE3NzI1NDY5MTAsImp0aSI6ImE2NzY3NTA4NWYzOTRhMjE5ZDg4ZGI1NTAxYTM5ZDg3IiwidXNlcl9pZCI6IjMifQ.iaq4gD_lDGZMV3BW_vbLTr3_wp8gF-DMIHO5P1mp5x4
