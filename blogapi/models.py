@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid
 
 class User (AbstractUser):
     image = models.ImageField(upload_to= 'profile_images/',blank=True, null=True)
 
 class Post (models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     title = models.CharField(max_length=100)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE , related_name='posts')
