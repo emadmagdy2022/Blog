@@ -36,5 +36,4 @@ class PostSerializer (serializers.ModelSerializer):
         return obj.likes.count()
     def get_total_comments(self, obj):
         return obj.comments.count()
-    def create(self, validated_data):
-        pass
+    
