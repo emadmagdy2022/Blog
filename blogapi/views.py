@@ -37,11 +37,8 @@ class PostViewSet(viewsets.ModelViewSet):
      filter_backends = [filters.SearchFilter,filters.OrderingFilter]
      search_fields = ['title', 'content']
      ordering_fields = ['created_at', 'updated_at']
-     
-      
      def perform_create(self, serializer):
-       serializer.fields['comments']=CommentSerializer(many=True, read_only=True)
-       serializer.save(author=self.request.user)
+          serializer.save(author=self.request.user)
               
      #@action(detail=True,methods=['post'],permission_classes=[permissions.IsAuthenticated])
 
