@@ -9,3 +9,4 @@ tzdata
 markdown       
 django-filter
 djangorestframework-simplejwt
+django-silk
