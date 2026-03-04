@@ -14,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     search_fields = ['username', 'email']
     ordering_fields = ['username', 'email']
     
-    #problem in geting normal user data
+    
     def get_queryset(self):
          qs = super().get_queryset()
          if not self.request.user.is_staff:
@@ -23,7 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
-     queryset = Post.objects.all()
+     queryset = Post.objects.prefetch_related('comments','likes','author')
      serializer_class = PostSerializer
      permission_classes = [permissions.IsAuthenticatedOrReadOnly]
      filter_backends = [filters.SearchFilter,filters.OrderingFilter]
