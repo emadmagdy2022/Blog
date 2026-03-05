@@ -5,6 +5,9 @@ from .serializers import UserSerializer, PostSerializer, CommentSerializer, Like
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db import transaction
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset =User.objects.all()
@@ -29,8 +32,14 @@ class PostViewSet(viewsets.ModelViewSet):
      filter_backends = [filters.SearchFilter,filters.OrderingFilter]
      search_fields = ['title', 'content']
      ordering_fields = ['created_at', 'updated_at']
+
+     @method_decorator(cache_page(60*15, key_prefix='post_list'))
+     def list(self, request, *args, **kwargs):
+          return super().list(request, *args, **kwargs)
+     
      def perform_create(self, serializer):
           serializer.save(author=self.request.user)
+
      def destroy(self, request, *args, **kwargs):
 
           requestUser = request.user
@@ -53,24 +62,17 @@ class PostViewSet(viewsets.ModelViewSet):
                else:
                     return Response({'detail': 'You do not have permission to update this post.'}, status=403)
      
-     # @action(detail = True, methods=['post'], permission_classes=[permissions.IsAuthenticated], url_path='comment')
-     # def makeComment(self,request,pk):
-     #      post = self.get_object()
-     #      serializer = CommentSerializer(data=request.data)
-     #      if serializer.is_valid():
-     #           serializer.save(author=request.user, post=post)
-     #           return Response(serializer.data, status=201)
-     #      else:
-     #           return Response(serializer.errors, status=400)
-     
+   
      @action(detail = True,methods= ['get','post'], url_path='comments',
              serializer_class=CommentSerializer)
+     
      def comments(self,request, pk=None):
           if request.method == 'GET':
                post = self.get_object()
                comments = post.comments.all()
                serializer = CommentSerializer(comments, many=True)
                return Response(serializer.data)
+          
           #there is no need to make is authinticated because the permission class of the viewset is IsAuthenticatedOrReadOnly
           elif request.method == 'POST':
                post = self.get_object()
@@ -80,6 +82,7 @@ class PostViewSet(viewsets.ModelViewSet):
                     return Response(serializer.data, status=201)
                else:
                     return Response(serializer.errors, status=400)
+    
      #using regix to capture the comment id in the url and then check if the user is the author of the comment before allowing them to update or delete it
      @action(detail=True,methods = ['put','patch','delete'],url_path = 'comments/(?P<comment_id>[^/.]+)',serializer_class=CommentSerializer)
      def comment_detail (self,request,pk=None,comment_id=None):
@@ -114,5 +117,13 @@ class PostViewSet(viewsets.ModelViewSet):
                return Response({'detail': 'Post unliked.'}, status=200)
           else:
                return Response({'detail': 'Post liked.'}, status=201)
+     
+     @method_decorator(cache_page(60*15, key_prefix='*me*'))
+     @method_decorator(vary_on_headers('Authorization'))
+     @action(detail=False, methods=['get'], url_path='me', serializer_class=PostSerializer)
+     def me(self,request):
+          my_posts = Post.objects.filter(author=request.user)
+          serializer = self.get_serializer(my_posts, many=True)
+          return Response(serializer.data)
 
 
