@@ -135,6 +135,19 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+        'blogapi.throttles.BurstRateThrottle',
+        'blogapi.throttles.SustainedRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/minute',
+        'burst': '2/minute',
+        'user': '1/minute',
+        'sustained': '3/hour',
+        
+    },
 }
 AUTH_USER_MODEL = 'blogapi.User'
 
