@@ -8,7 +8,6 @@ from django.db import transaction
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
-
 class UserViewSet(viewsets.ModelViewSet):
     queryset =User.objects.all()
     serializer_class = UserSerializer

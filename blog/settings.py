@@ -142,10 +142,10 @@ REST_FRAMEWORK = {
         'blogapi.throttles.SustainedRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '2/minute',
-        'burst': '2/minute',
-        'user': '1/minute',
-        'sustained': '3/hour',
+        'anon': '20/minute',
+        'burst': '30/minute',
+        'user': '50/minute',
+        'sustained': '100/hour',
         
     },
 }
