@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'blogapi',
     'silk',
+    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        
     ]
     ,
     'DEFAULT_PERMISSION_CLASSES': [
@@ -148,6 +151,14 @@ REST_FRAMEWORK = {
         'sustained': '100/hour',
         
     },
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Blog API',
+    'DESCRIPTION': 'Small Blog Api',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 AUTH_USER_MODEL = 'blogapi.User'
 
