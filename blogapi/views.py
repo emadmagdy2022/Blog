@@ -13,28 +13,27 @@ from .permissions import IsAdmin, IsOwner, IsAdminOrOwner
 class UserViewSet(viewsets.ModelViewSet):
     queryset =User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated,IsAdminOrOwner]
+    permission_classes = [permissions.IsAuthenticated,IsOwner]
     filter_backends = [filters.SearchFilter,filters.OrderingFilter]
     search_fields = ['username', 'email']
     ordering_fields = ['username', 'email']
-    
-    
+
     def get_queryset(self):
-         qs = super().get_queryset()
-         if not self.request.user.is_staff:
-               qs = qs.filter(id=self.request.user.id)
-         return qs
+        if self.request.user.is_staff:
+            return User.objects.all()
+        else:
+            return User.objects.filter(id=self.request.user.id)
 
 
 class PostViewSet(viewsets.ModelViewSet):
-     queryset = Post.objects.prefetch_related('comments','likes','author')
+     queryset = Post.objects.prefetch_related('comments','likes','author','comments__author','likes__user')
      serializer_class = PostSerializer
      permission_classes = [permissions.IsAuthenticatedOrReadOnly]
      filter_backends = [filters.SearchFilter,filters.OrderingFilter]
      search_fields = ['title', 'content']
      ordering_fields = ['created_at', 'updated_at']
 
-     @method_decorator(cache_page(60*15, key_prefix='post_list'))
+     #@method_decorator(cache_page(60*15, key_prefix='post_list'))
      def list(self, request, *args, **kwargs):
           return super().list(request, *args, **kwargs)
      
